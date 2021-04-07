@@ -1,4 +1,17 @@
-/* This code is subject to the GNU Lesser Public License, Version 3. */
-pref("extensions.cite4wiki.enabled", true);
-pref("extensions.cite4wiki.protectchrome.cite4wiki", "cite4wiki");
-pref("extensions.{d10d0bf8-ffff-c8b4-a8b2-2b9879e08c5d}.description", "chrome://cite4wiki/locale/global.properties");
+/* This file is part of Cite4Wiki.
+
+   Cite4Wiki is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License as
+   published by the Free Software Foundation, either version 3 of
+   the License, or (at your option) any later version.
+
+   Cite4Wiki is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with Foobar. If not, see
+   <https://www.gnu.org/licenses/>.
+*/
+pref("extensions.cite4wiki.vertical", false);

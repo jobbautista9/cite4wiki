@@ -1,6 +1,24 @@
+# This file is part of Cite4Wiki.
+#
+# Cite4Wiki is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation, either version 3 of
+# the License, or (at your option) any later version.
+#
+# Cite4Wiki is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with Foobar. If not, see
+# <https://www.gnu.org/licenses/>.
+
 content  cite4wiki         chrome/content/
-content  cite4wiki         chrome/content/ contentaccessible=yes
 locale   cite4wiki  en-US  chrome/locale/en-US/
 skin		cite4wiki	 classic/1.0 chrome/skin/
+
 overlay  chrome://browser/content/browser.xul chrome://cite4wiki/content/browser.xul
+overlay  chrome://navigator/content/navigator.xul chrome://cite4wiki/content/browser.xul
+
 style	chrome://global/content/customizeToolbar.xul	chrome://cite4wiki/skin/cite4wiki-skin.css

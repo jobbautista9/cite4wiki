@@ -1,28 +1,28 @@
-/* This code is subject to the GNU Lesser Public License, Version 3. */
+/* This file is part of Cite4Wiki.
+
+   Cite4Wiki is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License as
+   published by the Free Software Foundation, either version 3 of
+   the License, or (at your option) any later version.
+
+   Cite4Wiki is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with Foobar. If not, see
+   <https://www.gnu.org/licenses/>.
+*/
 /* ------------------------------------------------ */
 /*  Generate Wikipedia <ref>{{cite web...}}</ref>.  */
 /* ------------------------------------------------ */
-function initialize() {
-  var RDF = Components.classes["@mozilla.org/rdf/rdf-service;1"].
-            getService(Components.interfaces.nsIRDFService);
-  var ds =  Components.classes["@mozilla.org/rdf/datasource;1?name=cite4wiki"].
-            getService(Components.interfaces.nsIRDFDataSource);
-  var rdfRes = RDF.GetResource("cite4wiki");
-  var screenXRes = RDF.GetResource("screenX");
-  var screenYRes = RDF.GetResource("screenY");
-  var screenX = ds.GetTarget(rdfRes, screenXRes, true).
-                QueryInterface(Components.interfaces.nsIRDFLiteral);
-  var screenY = ds.GetTarget(rdfRes, screenYRes, true).
-                QueryInterface(Components.interfaces.nsIRDFLiteral);
-  window.moveto(screenX.value, screenY.value);
-  window.sizetocontent();
-}
 function makeDateArray() {
   for (i = 0; i<makeDateArray.arguments.length; i++) this[i + 1] = makeDateArray.arguments[i];
 }
 function generate(dateStyle) {
 /* Window dressing. */
-  var width = "400";
+  var width = "475";
   var height = "300";
   // For some reason, the "title", "location" and "menubar" details appear to have no effect:
   var cfg = "width=" + width + ",height=" + height + ",centerscreen,title='Cite4Wiki',titlebar=yes,location=no,menubar=no";
@@ -357,60 +357,59 @@ function generate(dateStyle) {
     // US: Month [D]D, YYYY
     _adate = months[amonth] + " " + aday + ", " + ayear;
   }
-  var txt ="";
+  var txt;
   /* Change the template and parameter names below to use on other wikis: */
-  txt = txt + "<ref>";
-  txt = txt + "{{cite " + _type;
-  txt = txt + " |url= " + _url;
-  txt = txt + " |title=" + _title;
-  txt = txt + " |first=";
-  txt = txt + " |last=" + "{{err|{{AUTHOR MISSING}}}}";
-  if (_type != "book") {
+  var BrwsrPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+  if (!BrwsrPrefs.getBoolPref("extensions.cite4wiki.vertical")) {
+   txt = "<ref>" + "{{cite " + _type + " |url= " + _url + " |title=" + _title + " |first=" + " |last=" + "{{err|{{AUTHOR MISSING}}}}"
+   if (_type != "book") {
 	  txt = txt + " |work=" + _work;
-  } else {
+   } else {
     txt = txt + " |isbn=" + _isbn; 
-  }
-  if (_type == "web") {
+   }
+   if (_type == "web") {
     txt = txt + " |year=" + _lyear + " [last update]";
-  } else if (_type == "news") {
+   } else if (_type == "news") {
     txt = txt + " |date=" + "{{err|{{DATE MISSING}}}}";
-  } else if (_type == "journal") {
+   } else if (_type == "journal") {
     txt = txt + " |year=" + "{{err|{{YEAR MISSING}}}}";
-  } else {
+   } else {
     txt = txt + " |year=";
+   }
+   if (_type == "journal") { txt = txt + " |volume="; }
+   if (_type == "journal") { txt = txt + " |issue="; }
+   if (_type == "journal") { txt = txt + " |pages="; }
+   if (_pubr != "") { txt = txt + " |publisher=" + _pubr; }
+   if (_loc != "") { txt = txt + " |location=" + _loc; }
+   if (_issn != "") { txt = txt + " |issn=" + _issn; }
+   if (_oclc != "") { txt = txt + " |oclc=" + _oclc; }
+   if (_quote != "") { txt = txt + " |quote=" + _quote; }
+   txt = txt + " |accessdate=" + _adate + "}}" + "</ref>";
+  } else {
+   txt = "<ref>" + "{{cite " + _type + "\n" + " |url= " + _url + "\n" + " |title=" + _title + "\n" + " |first=" + "\n" + " |last=" + "{{err|{{AUTHOR MISSING}}}}" + "\n";
+   if (_type != "book") {
+	  txt = txt + " |work=" + _work + "\n";
+   } else {
+    txt = txt + " |isbn=" + _isbn + "\n";
+   }
+   if (_type == "web") {
+    txt = txt + " |year=" + _lyear + " [last update]" + "\n";
+   } else if (_type == "news") {
+    txt = txt + " |date=" + "{{err|{{DATE MISSING}}}}" + "\n";
+   } else if (_type == "journal") {
+    txt = txt + " |year=" + "{{err|{{YEAR MISSING}}}}" + "\n";
+   } else {
+    txt = txt + " |year=";
+   }
+   if (_type == "journal") { txt = txt + " |volume=" + "\n"; }
+   if (_type == "journal") { txt = txt + " |issue=" + "\n"; }
+   if (_type == "journal") { txt = txt + " |pages=" + "\n"; }
+   if (_pubr != "") { txt = txt + " |publisher=" + _pubr + "\n"; }
+   if (_loc != "") { txt = txt + " |location=" + _loc + "\n"; }
+   if (_issn != "") { txt = txt + " |issn=" + _issn + "\n"; }
+   if (_oclc != "") { txt = txt + " |oclc=" + _oclc + "\n"; }
+   if (_quote != "") { txt = txt + " |quote=" + _quote + "\n"; }
+   txt = txt + " |accessdate=" + _adate + "\n" + "}}" + "</ref>";
   }
-  if (_type == "journal") { txt = txt + " |volume="; }
-  if (_type == "journal") { txt = txt + " |issue="; }
-  if (_type == "journal") { txt = txt + " |pages="; }
-  if (_pubr != "") { txt = txt + " |publisher=" + _pubr; }
-  if (_loc != "") { txt = txt + " |location=" + _loc; }
-  if (_issn != "") { txt = txt + " |issn=" + _issn; }
-  if (_oclc != "") { txt = txt + " |oclc=" + _oclc; }
-  if (_quote != "") { txt = txt + " |quote=" + _quote; }
-  txt = txt + " |accessdate=" + _adate;
-  txt = txt + "}}";
-  txt = txt + "</ref>";
   window.openDialog('chrome://cite4wiki/content/cite4wikiref.xul', '_blank', 'chrome,'+cfg,txt);
-}
-function copy_clip(wikicode) {
-/* This code was borrored from the codebase.nl free software site (defunct). */
-  // Enable a privilege:
-  // obsolete // netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-  // Open clipboard interface:
-  var clip = Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard);
-  if (!clip) { return; }
-  // Make it transferable:
-  var trans = Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable);
-  if (!trans) { return; }
-  // Specify what data type we want to obtain (text in this case):
-  trans.addDataFlavor('text/unicode');
-  // New object is needed to store the transferable data:
-  var str = new Object();
-  str = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);
-  str.data=wikicode;
-  trans.setTransferData("text/unicode",str,wikicode.length*2);
-  var clipid=Components.interfaces.nsIClipboard;
-  if (!clip) { return false; }
-  clip.setData(trans,null,clipid.kGlobalClipboard);  
-  return false;
 }

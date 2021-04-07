@@ -1,7 +1,22 @@
 <?xml version="1.0"?>
-<!-- This code is subject to the GNU Lesser Public License, Version 3. -->
+<!-- This file is part of Cite4Wiki.
+
+     Cite4Wiki is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Lesser General Public License as
+     published by the Free Software Foundation, either version 3 of
+     the License, or (at your option) any later version.
+
+     Cite4Wiki is distributed in the hope that it will be useful, but
+     WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+     Lesser General Public License for more details.
+
+     You should have received a copy of the GNU Lesser General Public
+     License along with Foobar. If not, see
+     <https://www.gnu.org/licenses/>.
+-->
 <?xml-stylesheet href="chrome://cite4wiki/skin/cite4wiki-skin.css" type="text/css"?>
-<!DOCTYPE cite4wiki SYSTEM "chrome://cite4wiki/locale/en-US/translations.dtd">
+<!DOCTYPE overlay SYSTEM "chrome://cite4wiki/locale/overlay.dtd">
 
 <overlay id="cite4wikiOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -12,18 +27,13 @@
     <command id="Tasks:cite4wikiUS" oncommand="generate('US');" />
 </commandset>
 
-<popup id="contentAreaContextMenu">     
-    <menuitem id="menu_cite4wiki" label="Cite4Wiki" insertbefore="sanitizeSeparator" observes="Tasks:cite4wiki" image="chrome://cite4wiki/skin/c4w.png" class="menuitem-iconic" tooltiptext="Cite4Wiki"></menuitem>
-    <menuitem id="menu_cite4wikiUS" label="Cite4Wiki (U.S. date)" insertbefore="sanitizeSeparator" observes="Tasks:cite4wikiUS" image="chrome://cite4wiki/skin/c4w_us.png" class="menuitem-iconic" tooltiptext="Cite4Wiki (U,S. date)"></menuitem>
-</popup>
-
 <menupopup id="contentAreaContextMenu">
-    <menuitem id="menu_cite4wiki" label="Cite4Wiki" insertbefore="sanitizeSeparator" observes="Tasks:cite4wiki" image="chrome://cite4wiki/skin/c4w.png" class="menuitem-iconic" tooltiptext="Cite4Wiki"></menuitem>
-    <menuitem id="menu_cite4wikiUS" label="Cite4Wiki (U.S. date)" insertbefore="sanitizeSeparator" observes="Tasks:cite4wikiUS" image="chrome://cite4wiki/skin/c4w_us.png" class="menuitem-iconic" tooltiptext="Cite4Wiki (U.S. date)"></menuitem>
+    <menuitem id="rightclickmenu_cite4wiki" label="&cite4wiki.ddmmyy;" insertbefore="sanitizeSeparator" observes="Tasks:cite4wiki" class="menuitem-iconic ddmmyy"/>
+    <menuitem id="rightclickmenu_cite4wikiUS" label="&cite4wiki.mmddyy;" insertbefore="sanitizeSeparator" observes="Tasks:cite4wikiUS" class="menuitem-iconic mmddyy"/>
 </menupopup>
 
 <menupopup id="menu_ToolsPopup">
-    <menuitem id="menu_cite4wiki1" label="Cite4Wiki" insertbefore="sanitizeSeparator" observes="Tasks:cite4wiki"  image="chrome://cite4wiki/skin/c4w.png" class="menuitem-iconic" tooltiptext="Cite4Wiki"></menuitem>
-    <menuitem id="menu_cite4wiki1US" label="Cite4Wiki (U.S. date)" insertbefore="sanitizeSeparator" observes="Tasks:cite4wikiUS" image="chrome://cite4wiki/skin/c4w_us.png" class="menuitem-iconic" tooltiptext="Cite4Wiki (U.S. date)"></menuitem>
+    <menuitem id="toolsmenu_cite4wiki" label="&cite4wiki.ddmmyy;" insertbefore="sanitizeSeparator" observes="Tasks:cite4wiki" class="menuitem-iconic ddmmyy"/>
+    <menuitem id="toolsmenu_cite4wikiUS" label="&cite4wiki.mmddyy;" insertbefore="sanitizeSeparator" observes="Tasks:cite4wikiUS" class="menuitem-iconic mmddyy"/>
 </menupopup>
 </overlay>

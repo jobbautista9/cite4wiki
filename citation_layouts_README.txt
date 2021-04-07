@@ -1,17 +1,12 @@
-Cite4Wiki citation layous README file
+Cite4Wiki citation layouts README file
 =====================================
 
 Layout choices
 --------------
 
-If you prefer a vertical layout to a horizontal one, rename the
-chrome/content/cite4wiki.js file to cite4wikiHorizontal.js and rename
-cite4wikiVertical.js to cite4wiki.js in the same location, re-ZIP the files
-(not the directory too!) into a new cite4wiki.zip, rename it to cite4wiki.xpi,
-and restart your browser.
-
-Someday, this will hopefully be a selectable option in the addon's "Options"
-menu.
+If you prefer a vertical layout to a horizontal one, toggle the
+extensions.cite4wiki.vertical preference in about:config or the add-on's
+Preferences window.
 
 A horizontal layout (the default upon installation) is the format used by at
 least a narrow majority of Wikipedians (especially those who focus on prose),
@@ -64,7 +59,7 @@ replaced by something like `<!--Staff writer(s); no by-line.-->` so that those
 who examine the citation code know that the author was not left blank
 accidentally.
 
-The `title=` parameter in particular should be checked for acccuracy.  Often
+The `title=` parameter in particular should be checked for accuracy.  Often
 it will simply default to the site name (which is already used in the `work=`
 parameter), or otherwise be unhelpful. Look for a heading in the content that
 provides the title of the document. If the title in title bar (provided by

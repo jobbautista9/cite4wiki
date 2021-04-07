@@ -1,43 +1,36 @@
 <?xml version="1.0"?>
-<!-- This code is subject to the GNU Lesser Public License, Version 3. -->
+<!-- This file is part of Cite4Wiki.
+
+     Cite4Wiki is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Lesser General Public License as
+     published by the Free Software Foundation, either version 3 of
+     the License, or (at your option) any later version.
+
+     Cite4Wiki is distributed in the hope that it will be useful, but
+     WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+     Lesser General Public License for more details.
+
+     You should have received a copy of the GNU Lesser General Public
+     License along with Foobar. If not, see
+     <https://www.gnu.org/licenses/>.
+-->
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet href="chrome://global/skin/cite4wiki-skin.css" type="text/css"?>
 <!DOCTYPE dialog SYSTEM "chrome://cite4wiki/locale/options.dtd">
 
 <!-- <!DOCTYPE dialog [<!ENTITY % optionsDTD SYSTEM "chrome://cite4wiki/locale/en-US/options.dtd">%optionsDTD;]> -->
 
-<dialog id="wpPrefs" title="Cite4Wiki"
+<dialog id="wpPrefs" title="&cite4wiki.dialog.title;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	onload=""
-	onunload=""
-	ondialogaccept="window.close();"
-	ondialogcancel="window.close();"
+	onload="currentVerticalPref();"
+	ondialogaccept="setVerticalPref();"
 	buttons="accept,cancel"
 	width="350"
 	height="300"
 	persist="screenX screenY width height sizemode"
 	windowtype="cite4wiki:options">
-
-<!-- These are the two fields at the top of the "Options" window available from the "Options" button on the "Add-ons" tool window. -->
-<!-- NOTE: There are no actual "options" here yet, just "About"-type material. -->
-<dialogheader title="Cite4Wiki" description="The Wikipedia Citation Add-in"/>
-
 <script type="application/x-javascript" src="options.js"/>
 
-<vbox id="entryarea">
-<!--This following material comes from chrome/locale/en-US/options.dtd.-->
-	<description id="introduction">
-		&description;
-	</description>
-  <!--Code elsewhere could change this next one to `hidden="false"` to warn when the add-on is disabled but browser hasn't been restarted, but... meh.-->
-	<description id="disabledWarning" hidden="true">
-		&disabled.warning;
-	</description>
-</vbox>
-
-<!--Hidden for now, since there are no actual options to change and apply.-->
-<button id="applyButton" class="dialog-button" hidden="true" label="&apply.label;" accesskey="&apply.accesskey;" oncommand="applyChanges()"/>
-
-<hbox id="dummy" height="0"/>
+<checkbox id="cite4wiki-verticalpref" label="&cite4wiki.dialog.vertical;" checked="false"/>
 
 </dialog>
