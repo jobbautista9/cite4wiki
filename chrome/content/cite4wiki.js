@@ -21,9 +21,14 @@ function makeDateArray() {
   for (i = 0; i<makeDateArray.arguments.length; i++) this[i + 1] = makeDateArray.arguments[i];
 }
 function generate(dateStyle) {
+  var BrwsrPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 /* Window dressing. */
   var width = "475";
-  var height = "300";
+  if (BrwsrPrefs.getBoolPref("extensions.cite4wiki.vertical")) {
+   var height = "350";
+  } else {
+   var height = "300";
+  }
   // For some reason, the "title", "location" and "menubar" details appear to have no effect:
   var cfg = "width=" + width + ",height=" + height + ",centerscreen,title='Cite4Wiki',titlebar=yes,location=no,menubar=no";
 //
@@ -359,14 +364,8 @@ function generate(dateStyle) {
   }
   var txt;
   /* Change the template and parameter names below to use on other wikis: */
-  var BrwsrPrefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
   if (!BrwsrPrefs.getBoolPref("extensions.cite4wiki.vertical")) {
-   txt = "<ref>" + "{{cite " + _type + " |url= " + _url + " |title=" + _title + " |first=" + " |last=" + "{{err|{{AUTHOR MISSING}}}}"
-   if (_type != "book") {
-	  txt = txt + " |work=" + _work;
-   } else {
-    txt = txt + " |isbn=" + _isbn; 
-   }
+   txt = "<ref>" + "{{cite " + _type + " |first=" + " |last=" + "{{err|{{AUTHOR MISSING}}}}" + " |title=" + _title;
    if (_type == "web") {
     txt = txt + " |year=" + _lyear + " [last update]";
    } else if (_type == "news") {
@@ -376,6 +375,11 @@ function generate(dateStyle) {
    } else {
     txt = txt + " |year=";
    }
+   if (_type != "book") {
+	  txt = txt + " |work=" + _work;
+   } else {
+    txt = txt + " |isbn=" + _isbn; 
+   }
    if (_type == "journal") { txt = txt + " |volume="; }
    if (_type == "journal") { txt = txt + " |issue="; }
    if (_type == "journal") { txt = txt + " |pages="; }
@@ -384,14 +388,9 @@ function generate(dateStyle) {
    if (_issn != "") { txt = txt + " |issn=" + _issn; }
    if (_oclc != "") { txt = txt + " |oclc=" + _oclc; }
    if (_quote != "") { txt = txt + " |quote=" + _quote; }
-   txt = txt + " |accessdate=" + _adate + "}}" + "</ref>";
+   txt = txt + " |url=" + _url + " |access-date=" + _adate + "}}" + "</ref>";
   } else {
-   txt = "<ref>" + "{{cite " + _type + "\n" + " |url= " + _url + "\n" + " |title=" + _title + "\n" + " |first=" + "\n" + " |last=" + "{{err|{{AUTHOR MISSING}}}}" + "\n";
-   if (_type != "book") {
-	  txt = txt + " |work=" + _work + "\n";
-   } else {
-    txt = txt + " |isbn=" + _isbn + "\n";
-   }
+   txt = "<ref>" + "{{cite " + _type + "\n" + " |first=" + "\n" + " |last=" + "{{err|{{AUTHOR MISSING}}}}" + "\n" + " |title=" + _title + "\n";
    if (_type == "web") {
     txt = txt + " |year=" + _lyear + " [last update]" + "\n";
    } else if (_type == "news") {
@@ -401,6 +400,11 @@ function generate(dateStyle) {
    } else {
     txt = txt + " |year=";
    }
+   if (_type != "book") {
+	  txt = txt + " |work=" + _work + "\n";
+   } else {
+    txt = txt + " |isbn=" + _isbn + "\n";
+   }
    if (_type == "journal") { txt = txt + " |volume=" + "\n"; }
    if (_type == "journal") { txt = txt + " |issue=" + "\n"; }
    if (_type == "journal") { txt = txt + " |pages=" + "\n"; }
@@ -409,7 +413,7 @@ function generate(dateStyle) {
    if (_issn != "") { txt = txt + " |issn=" + _issn + "\n"; }
    if (_oclc != "") { txt = txt + " |oclc=" + _oclc + "\n"; }
    if (_quote != "") { txt = txt + " |quote=" + _quote + "\n"; }
-   txt = txt + " |accessdate=" + _adate + "\n" + "}}" + "</ref>";
+   txt = txt + " |url=" + _url + "\n" + " |access-date=" + _adate + "\n" + "}}" + "</ref>";
   }
   window.openDialog('chrome://cite4wiki/content/cite4wikiref.xul', '_blank', 'chrome,'+cfg,txt);
 }

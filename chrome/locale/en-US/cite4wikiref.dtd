@@ -15,6 +15,7 @@
      <https://www.gnu.org/licenses/>.
 -->
 
+<!ENTITY cite4wiki.verticalwarning "Vertical layout is currently enabled. This should only be used for WP:LDR, see https://en.wikipedia.org/wiki/Help:Footnotes#List-defined_references.">
 <!ENTITY cite4wiki.copytoclipboard "Copy to Clipboard">
 <!ENTITY cite4wiki.and "and">
 <!ENTITY cite4wiki.close "Close">

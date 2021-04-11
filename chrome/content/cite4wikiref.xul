@@ -20,9 +20,11 @@
 <!DOCTYPE overlay SYSTEM "chrome://cite4wiki/locale/cite4wikiref.dtd">
 
 <window id="cite4wiki" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="checkForVerticalBeforeLabel();"
         title="Cite4Wiki"
         persist="width height">
         <script src="chrome://cite4wiki/content/cite4wiki.js" type="application/x-javascript" />
+        <script src="chrome://cite4wiki/content/cite4wikiref.js" type="application/x-javascript" />
 <vbox flex="2">
 <!-- The "h2" text below is the text that appears at the top of the citation code window you get after using the context menu. -->
 <!-- Character entity codes are NOT okay here, but should be. No Unicode either. Both cause XML parse errors. -->
@@ -33,6 +35,7 @@
         var d = document.getElementById("tbox"); 
         d.setAttribute("value", txt);
 </script>
+<label id="cite4wiki-verticalwarning" hidden="true">&cite4wiki.verticalwarning;</label>
 <hbox align="center" flex="1">
 <button label="&cite4wiki.copytoclipboard; &cite4wiki.and; &cite4wiki.close;" onclick="Components.classes['@mozilla.org/widget/clipboardhelper;1'].getService(Components.interfaces.nsIClipboardHelper).copyString(txt);window.close();" />
 <button label="&cite4wiki.copytoclipboard;" onclick="Components.classes['@mozilla.org/widget/clipboardhelper;1'].getService(Components.interfaces.nsIClipboardHelper).copyString(txt);" />
