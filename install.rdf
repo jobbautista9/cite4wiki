@@ -18,7 +18,7 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	<Description about="urn:mozilla:install-manifest">
-		<em:id>{e93c5de4-96dd-4229-8f11-fea7dc221341}</em:id>
+		<em:id>cite4wiki@peeps.wiki</em:id>
 		<em:version>1.6</em:version>
 		<em:type>2</em:type>
 		<em:name>Cite4Wiki</em:name>
@@ -31,7 +31,7 @@
 		<em:contributor>Ratel</em:contributor>
 		<em:contributor>Yojimbo Doodah</em:contributor>
 		<em:contributor>Mozilla.org (stock code)</em:contributor>
-		<em:homepageURL>http://en.wikipedia.org/wiki/Wikipedia:Cite4Wiki</em:homepageURL>
+		<em:homepageURL>https://en.wikipedia.org/wiki/Wikipedia:Cite4Wiki</em:homepageURL>
 		<em:optionsURL>chrome://cite4wiki/content/options.xul</em:optionsURL>
   		<em:iconURL>chrome://cite4wiki/skin/icon.png</em:iconURL> 
 
